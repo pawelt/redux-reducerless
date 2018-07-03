@@ -1,10 +1,17 @@
 {
   "name": "redux-reducerless",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Redux without reducers and constants",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build:rollup && npm run  build:babel",
+    "build:rollup": "rollup src/reducerless.js --file dist/index.js --format cjs",
+    "build:babel": "babel --no-comments --minified  -o dist/index.js dist/index.js",
+    "prepare": "npm run build",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -21,5 +28,14 @@
   "bugs": {
     "url": "https://github.com/pawelt/redux-reducerless/issues"
   },
-  "homepage": "https://github.com/pawelt/redux-reducerless#readme"
+  "homepage": "https://github.com/pawelt/redux-reducerless#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "redux": "^4.0.0",
+    "rollup": "^0.62.0"
+  }
 }
